@@ -3,6 +3,7 @@
 require 'socket'
 
 puts "Starting up server..."
+flap_freq=4
 
 server=TCPServer.new(2008)
 n=0
@@ -18,7 +19,7 @@ while (session = server.accept) do
         break if line =~ /^[\r\n]+$/
     end
     puts "log: got input from client"
-    if ( n % 4 != 0 ) 
+    if ( n % flap_freq != 0 ) 
         session.puts "HTTP/1.1 200 OK\nDate: Mon, 30 Jan 2012 21:05:40 GMT\n"
         session.puts "Content-Length: 44\nContent-Type: text/html; charset=UTF-8\n\n"
         session.puts "<html><body><h1>Hi World</h1></body></html>\n"

@@ -1,0 +1,11 @@
+HTTP/1.1 401 Unauthorized
+Date: Mon, 21 May 2012 18:51:13 GMT
+X-AREQUESTID: 891x207715x1
+Set-Cookie: atlassian.xsrf.token=AG87-S37R-QM8W-6VWE|3558dda64f70b989e981001f4806323377125192|lout; Path=/
+X-AUSERNAME: anonymous
+WWW-Authenticate: OAuth realm="https%3A%2F%2Fjira.audaxhealth.com"
+Cache-Control: no-cache, no-store, no-transform
+Content-Type: application/json;charset=UTF-8
+Connection: close
+Transfer-Encoding: chunked
+

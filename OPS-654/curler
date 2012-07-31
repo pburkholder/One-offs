@@ -1,0 +1,9 @@
+curl  \
+  -vs \
+  -d 'id=&redirect=%2Fuser%2Flanding&username=beaknit%40gmail.com&password=overlord&rememberme=0&Submit=Submit' \
+  -H 'Referer: https://www.careverge.com/user/login' \
+  -L \
+  -c jar \
+  -o out.html -k \
+  https://www.careverge.com/user/login
+

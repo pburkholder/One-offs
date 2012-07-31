@@ -1,7 +1,9 @@
 for ip in $(dig +short www.careverge.com); do
+  REDIR=/v2/dashboard/activityfeed
   echo "IP=$ip"
 
   check_http \
-    -P 'id=&redirect=%2Fuser%2Flanding&username=beaknit%40gmail.com&password=overlord' \
-    -S -p 443 -H $ip -u /user/login -f follow
+    -P 'id=&redirect=/v2/dashboard/activityfeed&username=beaknit%40gmail.com&password=overlord' \
+    -S -p 443 -H $ip -u /user/login  -f follow -v > $ip.html
+
 done

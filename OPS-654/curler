@@ -1,9 +1,19 @@
-curl  \
-  -vs \
-  -d 'id=&redirect=%2Fuser%2Flanding&username=beaknit%40gmail.com&password=overlord&rememberme=0&Submit=Submit' \
-  -H 'Referer: https://www.careverge.com/user/login' \
-  -L \
-  -c jar \
-  -o out.html -k \
-  https://www.careverge.com/user/login
+ips=$(dig A +short $(dig CNAME +short www.careverge.com))
+
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  for ip in $ips; do
+    echo IP: $ip
+    curl  \
+      -s \
+      -d 'id=&redirect=%2Fuser%2Flanding&username=beaknit%40gmail.com&password=overlord&rememberme=0&Submit=Submit' \
+      -H 'Referer: https://www.careverge.com/user/login' \
+      -L \
+      -c jar \
+      -o $ip.html -k \
+      -H 'Host: www.careverge.com' \
+      -w "total: %{time_total} appcon: %{time_appconnect} prexfer: %{time_pretransfer} redir: %{time_redirect} startxfer: %{time_starttransfer}\n" \
+      https://$ip/user/login
+    echo ==
+  done
+done
 

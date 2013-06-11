@@ -1,12 +1,13 @@
 #!/bin/bash
 
-AUTH='pburkholder:4testing'
+#AUTH='pburkholder:4testing'
+AUTH='github:RESTful'
 HOST=jira.audaxhealth.com
-URL="https://$HOST/rest/api/latest/issue/OCT-5460/transitions"
+URL="https://$HOST/rest/api/2/issue/OCT-5460/transitions"
 #    --data '{ "update": { "comment": [ { "add": { "body": "Dev Complete" } } ] }, "fields": { "assignee": { "name": "pburkholder" }, "resolution": { "name": "Fixed" } }, "transition": { "id": "761" } }' 
 
 transitions() {
-  curl -s -u $AUTH $URL | python -mjson.tool
+  curl -s -u $AUTH $URL 
 }
 
 
@@ -14,7 +15,8 @@ devcomplete() {
   curl -v -s -u $AUTH \
     -H "Content-Type: application/json" -X POST \
     $URL \
-    --data '{ "update": { "comment": [ { "add": { "body": "Dev Complete" } } ] }, "fields": { "assignee": { "name": "pburkholder" }, "resolution": { "name": "Fixed" } }, "transition": { "id": "781" } }' 
+    --data '{ "update": { "comment": [ { "add": { "body": "Dev Complete" } } ] }, "fields": { "assignee": { "name": "pburkholder" }, "resolution": { "id": "1" } }, "transition": { "id": "781" } }' 
+    #--data '{ "update": { "comment": [ { "add": { "body": "Dev Complete" } } ] }, "fields": { "assignee": { "name": "pburkholder" }, "resolution": { "name": "Fixed" } }, "transition": { "id": "781" } }' 
 }
 
 reopen() {

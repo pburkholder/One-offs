@@ -16,10 +16,7 @@ form {
 }
 
 </style>
-<form>
-  <label><input type="radio" name="mode" value="size"> Size</label>
-  <label><input type="radio" name="mode" value="count" checked> Count</label>
-</form>
+<h5>Sunburst Partition</h5>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -49,7 +46,6 @@ var flareJson = {
  ]
 }
 
-
 var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2,
@@ -58,7 +54,7 @@ var width = 960,
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
 
 var partition = d3.layout.partition()
@@ -66,20 +62,16 @@ var partition = d3.layout.partition()
     .size([2 * Math.PI, radius * radius])
     .value(function(d) { return 1; });
 
-console.log('var arc')
 var arc = d3.svg.arc()
     .startAngle(function(d) { return d.x; })
     .endAngle(function(d) { return d.x + d.dx; })
     .innerRadius(function(d) { return Math.sqrt(d.y); })
     .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-console.log('starting d3.json')
-
 function visualize_it(root) {
-  console.log(root)
-  var path = svg.datum(root).selectAll("path")
+  path = svg.datum(root).selectAll("path")
       .data(partition.nodes)
-    .enter().append("path")
+      .enter().append("path")
       .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
       .attr("d", arc)
       .style("stroke", "#fff")
@@ -87,19 +79,5 @@ function visualize_it(root) {
       .style("fill-rule", "evenodd")
 }; 
 
-// Interpolate the arcs in data space.
-function arcTween(a) {
-  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
-  return function(t) {
-    var b = i(t);
-    a.x0 = b.x;
-    a.dx0 = b.dx;
-    return arc(b);
-  };
-}
-
 visualize_it(flareJson)
-
-d3.select(self.frameElement).style("height", height + "px");
-
 </script>

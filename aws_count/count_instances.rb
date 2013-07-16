@@ -2,6 +2,7 @@
 
 require 'yaml'
 require 'aws-sdk'
+require 'pp'
 
 config_file = File.join(File.dirname(__FILE__), 'config.yml')
 
@@ -11,6 +12,8 @@ AWS.config(config)
 
 c = AWS::EC2::ReservedInstancesCollection.new()
 
+
+
 zones=('a'..'e').to_a.map{|z| "us-east-1#{z}"}
 
 # The filter methods use filter names based on the API # docs, e.g.
@@ -19,8 +22,16 @@ zones=('a'..'e').to_a.map{|z| "us-east-1#{z}"}
 # 'instance-type', not 'instance_type'
 
 zones.each do |zone|
-  printf "|| %s || Reserved# || Running #||\n", zone
+  puts zone
+  p c.member_class
+  c.filter('availability-zone',zone).each { |cc|
+    pp cc
+    p cc.instance_count
+    p cc.availability_zone
+  }
+
 end
 
+
 c.filter('state', 'active').filter('instance-type', 'm1.large') \
-  .each{|i| puts i.instance_count}
+  .each{|i| puts i.instance_count, i.availability_zone}

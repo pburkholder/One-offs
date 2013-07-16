@@ -1,0 +1,5 @@
+var config = {
+	ci_url: 'http://ci.jruby.org/view/Ruboto',
+	jobs_to_be_filtered: [],
+	jobs_to_be_excluded: []
+}

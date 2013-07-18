@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+</style>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js";> </script>
+<script type='text/javascript' src='coffee-script.js';> </script>
+<h5 id="header">Sunburst Partition</h5>
+
+<script type="text/coffeescript">
+
+flareJson = {
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "cluster",
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 3938},
+      {"name": "CommunityStructure", "size": 3812},
+      {"name": "MergeEdge", "size": 743}
+     ]
+    },
+    {
+     "name": "graph",
+     "children": [
+      {"name": "BetweennessCentrality", "size": 3534},
+      {"name": "LinkDistance", "size": 5731}
+     ]
+    }
+   ]
+  }
+ ]
+}
+
+width = 960
+height = 700
+radius = Math.min(width, height) / 2
+color = d3.scale.category20c()
+
+svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
+
+console.log(svg)
+
+
+partition = d3.layout.partition()
+    .sort(null)
+    .size([2 * Math.PI, radius * radius])
+    .value( (d) -> 1 )
+
+console.log(partition)
+
+arc = d3.svg.arc()
+    .startAngle( (d) -> d.x )
+    .endAngle( (d) ->  d.x + d.dx )
+    .innerRadius( (d) ->  Math.sqrt(d.y) )
+    .outerRadius( (d) ->  Math.sqrt(d.y + d.dy))
+
+console.log(arc)
+###
+
+    .startAngle(function(d) { return d.x; })
+    .endAngle(function(d) { return d.x + d.dx; })
+    .innerRadius(function(d) { return Math.sqrt(d.y); })
+    .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+function visualize_it(root) {
+  path = svg.datum(root).selectAll("path")
+      .data(partition.nodes)
+      .enter().append("path")
+      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+      .attr("d", arc)
+      .style("stroke", "#fff")
+      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+      .style("fill-rule", "evenodd")
+}; 
+
+visualize_it(flareJson)
+
+###
+</script>

@@ -78,25 +78,22 @@ arc = d3.svg.arc()
     .outerRadius( (d) ->  Math.sqrt(d.y + d.dy))
 
 console.log(arc)
-###
 
-    .startAngle(function(d) { return d.x; })
-    .endAngle(function(d) { return d.x + d.dx; })
-    .innerRadius(function(d) { return Math.sqrt(d.y); })
-    .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+visualize_it = (root) ->
+  path = svg.datum(root)
+    .selectAll("path")
+    .data(partition.nodes)
+    .enter()
+    .append("path")
+    .attr("display", (d) ->
+      (if d.depth then null else "none")
+    ).attr("d", arc)
+    .style("stroke", "#fff")
+    .style("fill", (d) ->
+      color ((if d.children then d else d.parent)).name
+    ).style("fill-rule", "evenodd")
 
-function visualize_it(root) {
-  path = svg.datum(root).selectAll("path")
-      .data(partition.nodes)
-      .enter().append("path")
-      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
-      .attr("d", arc)
-      .style("stroke", "#fff")
-      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-      .style("fill-rule", "evenodd")
-}; 
 
-visualize_it(flareJson)
+visualize_it flareJson
 
-###
 </script>

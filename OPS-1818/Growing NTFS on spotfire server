@@ -1,0 +1,68 @@
+Growing NTFS on spotfire server
+
+30Gb C:
+Other partitions?
+
+Only SDA1, VOLUME vol-1bd8a240  30  snap-8cfbf6d6 us-east-1c  in-use  2013-06-06T21:32:09+0000  standard
+
+The steps from JasonM are:
+
+[1] Identify your Windows instance in the AWS web console and write down the instance ID e.g. i-3cffee2
+
+i-96bc11f7
+
+[2] Click on the Description tab on the lower section of the page for this instance and find the line on the left hand side marked Block Devices. Note down the volume name of the /dev/sda1 device e.g. vol-00931469
+
+vol-1bd8a240
+
+[3] Now on the same Description tab find the section Zone: and write down the zone your instance is running in e.g. eu-west-1b
+
+us-east-1c
+
+[4] Go to the left hand side of the EC2 console under the heading ELASTIC BLOCK STORE and select volumes.
+
+[5] Find the volume id noted in step 2, Right click on this volume name and select Create Snapshot. Then give the snapshot a meaningful name so you can find it later.
+
+snap-222e5b2c (server)
+
+
+[6] Now go to the Snapshots section under the ELASTIC BLOCK STORE on the AWS console and find your newly created snapshot. Right click on the snapshot and select “Create Volume from Snapshot” Enter the new size you want your C: to be let’s say 100GB for example also make sure you pick the same availability zone your instance is running refer to step 3 Zone information. 
+
+
+
+[7] Go back to the Volumes page you should see the new volume you have created from the snapshot there. Now right click on this volume and select “Attach Volume” select the instance name you noted down in Step 1 Use xvdf as a mount point. Write down this volume name for future reference.
+
+[8] Now Remote Desktop to your running instance and launch from the Computer Management tool and select the storage/Disk management tab and you should now see two physical drives here the original C: drive which is still at 30GB and your secondary D: drive which in our example was 100GB size has one partition the same size as the C: drive and the remaining space is unallocated space. If you see this then go to the next step. 
+
+
+[9] Go back to the AWS console and stop the instance and then go to the volumes tab. find the boot volume we noted from step 2 and right click and select detach volume. Now go and find the newly created/extended volume from step 7. Right click and detach this volume. When the detach is fully complete right click again and select attach and pick the instance id we noted down in step 1 and select the following as a mount point /dev/sda1
+
+
+[10] Open a command prompt and load the command line disk management tool “diskpart” and issue the following commands
+DISKPART> select disk 1
+Disk 1 is now the selected disk.
+DISKPART> select partition 1
+Partition 1 is now the selected partition.
+DISKPART> extend
+DiskPart successfully extended the volume.
+
+Now if you refresh the Storage management screen you should now see the D: drive is occupying the full space you allocated on the new disk.
+
+
+NOTES
+i-96bc11f7 spotfire-server 
+
+i-7528aa1a spotfire-web up since 2013-06-96
+i-a072ffce spotfire-web up since 2013-08-15
+
+ec2stop i-96bc11f7  vol vol-1bd8a240 snap snap-8cfbf6d6
+ec2stop i-a072ffce  vol vol-784e7738 snap snap-15434f45
+ec2stop i-7528aa1a  # DEPRECATED vol-fdceb4a6
+
+HERE: 
+SNAPSHOT  snap-ba285db4 vol-784e7738  completed 2013-09-11T18:56:35+0000  100%  900901929911  30
+TAG snapshot  snap-ba285db4 Name  30gb_snap_spotfireweb
+
+SNAPSHOT  snap-222e5b2c vol-1bd8a240  completed 2013-09-11T18:55:59+0000  100%  900901929911  30
+TAG snapshot  snap-222e5b2c Name  30gb_snap_spotfireserver
+

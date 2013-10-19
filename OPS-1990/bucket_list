@@ -1,0 +1,174 @@
+2013-03-04 20:44  s3://ftu  (312 .png files from 2011)
+2013-03-04 20:39  s3://cv-dev-emr (elastic map reduce attempt from April 2012)
+2012-11-14 00:22  s3://cv-mongodb-backups-dev (lzo and lzop attempts, 17 objects)
+2012-09-13 21:27  s3://cv-health2.0-sf-prod
+2012-09-13 21:26  s3://cv-health2.0-sf-dev
+2012-09-13 19:00  s3://cvjenkins-build-archive
+2012-03-15 20:42  s3://audaxhealth-media
+2012-02-10 12:36  s3://cf-templates-t16cprg560kb-us-east-1
+2012-01-17 15:34  s3://cvperf
+2011-12-12 13:37  s3://cvdepot
+2011-11-30 15:05  s3://userinvite
+2011-11-29 22:30  s3://cvemail
+2011-08-29 17:22  s3://OpsDump
+2011-05-09 19:30  s3://dataviz
+2011-04-12 11:56  s3://swimages
+2011-04-12 11:56  s3://swfeatures
+2011-04-12 11:56  s3://swdata
+2011-04-12 11:53  s3://stagingdb
+2011-03-22 17:23  s3://analyticsdata
+2011-01-10 19:05  s3://audax.operations
+2010-11-03 21:26  s3://hwfeatures
+2010-11-03 07:18  s3://lexidata
+2010-10-31 17:14  s3://hwsnippets
+2010-10-21 16:58  s3://audax_amis
+2010-10-17 01:39  s3://hwimages
+2010-10-17 01:32  s3://hwdata
+2010-10-15 00:49  s3://cv_logging
+2010-09-13 20:45  s3://rightscale_29456343c7b1b8b263efd9b3b4b23e52190b5
+
+=== nearly empty ==
+=== s3://analytics-execution-logs : 5 ===
+                       DIR   s3://analytics-execution-logs/dev/
+                       DIR   s3://analytics-execution-logs/local/
+                       DIR   s3://analytics-execution-logs/prodsec/
+                       DIR   s3://analytics-execution-logs/rc/
+                       DIR   s3://analytics-execution-logs/sec/
+=== s3://apt-cignatest : 2 ===
+                       DIR   s3://apt-cignatest/dists/
+                       DIR   s3://apt-cignatest/pool/
+=== s3://apt-debug : 2 ===
+                       DIR   s3://apt-debug/dists/
+                       DIR   s3://apt-debug/pool/
+=== s3://apt-demo : 2 ===
+                       DIR   s3://apt-demo/dists/
+                       DIR   s3://apt-demo/pool/
+=== s3://apt-dev1 : 2 ===
+                       DIR   s3://apt-dev1/dists/
+                       DIR   s3://apt-dev1/pool/
+=== s3://apt-dev2 : 2 ===
+                       DIR   s3://apt-dev2/dists/
+                       DIR   s3://apt-dev2/pool/
+=== s3://apt-dev3 : 2 ===
+                       DIR   s3://apt-dev3/dists/
+                       DIR   s3://apt-dev3/pool/
+=== s3://apt-dev4 : 2 ===
+                       DIR   s3://apt-dev4/dists/
+                       DIR   s3://apt-dev4/pool/
+=== s3://apt-fpm : 1 ===
+                       DIR   s3://apt-fpm/fpm/
+=== s3://apt-infra : 4 ===
+                       DIR   s3://apt-infra/conf/
+                       DIR   s3://apt-infra/db/
+                       DIR   s3://apt-infra/dists/
+                       DIR   s3://apt-infra/pool/
+=== s3://apt-load : 2 ===
+                       DIR   s3://apt-load/dists/
+                       DIR   s3://apt-load/pool/
+=== s3://apt-master : 2 ===
+                       DIR   s3://apt-master/dists/
+                       DIR   s3://apt-master/pool/
+=== s3://apt-partnertest1 : 2 ===
+                       DIR   s3://apt-partnertest1/dists/
+                       DIR   s3://apt-partnertest1/pool/
+=== s3://apt-production : 3 ===
+                       DIR   s3://apt-production/dists/
+                       DIR   s3://apt-production/pool/
+2013-04-15 15:32     26463   s3://apt-production/fruitsVeggies.jpg
+=== s3://apt-rc : 2 ===
+                       DIR   s3://apt-rc/dists/
+                       DIR   s3://apt-rc/pool/
+=== s3://audax-public : 2 ===
+2013-04-01 21:44  80638616   s3://audax-public/ZenseyDemo.zip
+2013-04-01 22:35  80640452   s3://audax-public/ZenseyDemo1.zip
+=== s3://audax_amis : 1 ===
+                       DIR   s3://audax_amis/image_bundles/
+=== s3://audaxcorporate : 1 ===
+2012-01-18 22:35    141179   s3://audaxcorporate/btm-logos.png
+=== s3://audaxhealth-media : 1 ===
+2012-03-15 20:43  41853097   s3://audaxhealth-media/SeanPorter128kbps.mp3
+=== s3://brand.user : 1 ===
+                       DIR   s3://brand.user/avatars/
+=== s3://cfn-bootstrap-dev : 2 ===
+2013-02-22 20:32      3146   s3://cfn-bootstrap-dev/bootstrap.sh
+2012-12-06 02:22      3308   s3://cfn-bootstrap-dev/mongo_installer.sh
+=== s3://cv-artifacts : 3 ===
+                       DIR   s3://cv-artifacts/dev/
+                       DIR   s3://cv-artifacts/nathan/
+                       DIR   s3://cv-artifacts/secure/
+=== s3://cv-health2.0-sf-dev : 1 ===
+2012-09-18 15:14     37309   s3://cv-health2.0-sf-dev/out.html
+=== s3://cvdepot : 3 ===
+2012-09-25 15:31      1450   s3://cvdepot/body404.jpg
+2011-12-12 14:15   9229167   s3://cvdepot/dev_db_backup_2011_12_12_14_15_29.bz2.enc
+2011-12-12 15:03   9235576   s3://cvdepot/dev_db_backup_2011_12_12_15_02_48.bz2.enc
+=== s3://cvemail : 4 ===
+2011-11-29 22:34      2202   s3://cvemail/divider.gif
+2011-12-02 18:30      4052   s3://cvemail/logo.jpg
+2011-11-29 22:34      1423   s3://cvemail/roundedbo.gif
+2011-11-29 22:34      1423   s3://cvemail/roundedtop.gif
+=== s3://cvjenkins-build-archive : 3 ===
+                       DIR   s3://cvjenkins-build-archive/apt-ftpachive/
+                       DIR   s3://cvjenkins-build-archive/reprepro/
+2012-09-13 19:01  49067476   s3://cvjenkins-build-archive/cvapi-rc_1.0.5_all.deb
+=== s3://cvperf : 1 ===
+                       DIR   s3://cvperf/img/
+=== s3://dataviz : 2 ===
+                       DIR   s3://dataviz/health_stream/
+2011-12-30 15:52 393379380   s3://dataviz/viz.zip
+=== s3://hwimages : 2 ===
+                       DIR   s3://hwimages/media/
+2010-10-17 20:54         0   s3://hwimages/media_$folder$
+=== s3://landingpageassets : 1 ===
+                       DIR   s3://landingpageassets/img/
+=== s3://lexidata : 5 ===
+                       DIR   s3://lexidata/images/
+                       DIR   s3://lexidata/mono/
+2010-11-03 07:19         0   s3://lexidata/images
+2010-11-22 23:08 136242709   s3://lexidata/lexiDataSeed.zip
+2010-11-03 07:43         0   s3://lexidata/mono
+=== s3://metrics-store : 1 ===
+                       DIR   s3://metrics-store/whisper-2012.11.23/
+=== s3://partnertest1.user : 2 ===
+                       DIR   s3://partnertest1.user/avatars/
+                       DIR   s3://partnertest1.user/group/
+=== s3://perf.user : 2 ===
+                       DIR   s3://perf.user/avatars/
+                       DIR   s3://perf.user/group/
+=== s3://preprod.user : 1 ===
+                       DIR   s3://preprod.user/avatars/
+=== s3://preview.user : 1 ===
+                       DIR   s3://preview.user/avatars/
+=== s3://rc.user : 2 ===
+                       DIR   s3://rc.user/avatars/
+                       DIR   s3://rc.user/group/
+=== s3://rightscale_29456343c7b1b8b263efd9b3b4b23e52190b5 : 1 ===
+                       DIR   s3://rightscale_29456343c7b1b8b263efd9b3b4b23e52190b5/right_script_attachments/
+=== s3://stats.careverge : 3 ===
+2011-06-21 21:29     11579   s3://stats.careverge/cdBG.jpg
+2011-06-24 16:58       494   s3://stats.careverge/cv_clicky.css
+2011-06-21 18:55     12465   s3://stats.careverge/cv_logo_140w.png
+=== s3://test.user : 2 ===
+                       DIR   s3://test.user/avatars/
+                       DIR   s3://test.user/group/
+=== s3://userinvite : 4 ===
+                       DIR   s3://userinvite/acpm/
+                       DIR   s3://userinvite/default/
+                       DIR   s3://userinvite/nesta/
+                       DIR   s3://userinvite/vo/
+=== s3://vodata : 3 ===
+2012-03-21 19:05    604984   s3://vodata/Audax_AUTH 3-19-2012.zip
+2012-03-21 19:05  33387517   s3://vodata/Audax_CLAIM 3-19-2012.zip
+2012-03-21 19:05     10504   s3://vodata/ExtractFormats.xls.zip
+=== s3://zensey-analyzer : 4 ===
+2013-02-06 05:30       203   s3://zensey-analyzer/README
+2013-07-11 02:45     36854   s3://zensey-analyzer/analytics.json
+2013-02-06 15:38      3124   s3://zensey-analyzer/analytics.jsonanalytics.json
+2013-08-15 21:41    206067   s3://zensey-analyzer/recommendationAnalytics.json
+=== s3://zs-challenges : 3 ===
+                       DIR   s3://zs-challenges/exp1/
+                       DIR   s3://zs-challenges/exp2/
+                       DIR   s3://zs-challenges/gme1/
+=== s3://zs-vagrant : 2 ===
+2013-09-24 22:45 358154240   s3://zs-vagrant/precise-server-cloudimg-amd64-vagrant-disk1.box
+2013-09-04 23:08 577969152   s3://zs-vagrant/ubuntu-12.04-audax-chef.box

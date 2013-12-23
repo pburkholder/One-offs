@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# require 'chef'
+require 'chef'
 
 cookbook_path           = "#{ENV['HOME']}/Chef"
 node_name               = "#{ENV['KNIFE_NODE_NAME']}"
@@ -8,13 +8,18 @@ client_key              = "#{ENV['KNIFE_CLIENT_KEY']}"
 chef_server_url         = "#{ENV['KNIFE_CHEF_SERVER']}"
 env='dev1'
 
-zs_roles = Dir.entries(File.join(cookbook_path, 'zs-role/recipes')).map!{ |x| x.sub("\.rb","") }
-
 rest = Chef::REST.new(chef_server_url, node_name, client_key)
-request = { "run_list"  => [ "zs-role" ] }
-cookbooks = rest.post("environments/#{env}/cookbook_versions", request)
+zs_roles = Dir.entries(File.join(cookbook_path, 'zs-role/recipes')).select{|r| r.match(/rb/)}.map{ |x| x.sub("\.rb","") }
 
-cookbooks.each_key{ |k| 
-  printf "%-20s %s\n", cookbooks[k].name, cookbooks[k].version
-}
+zs_roles.each do |role|
+  versions = []
+  print "Working on: zs-role::#{role}\n"
+  request = { "run_list"  => [ "zs-role::#{role}" ] }
+  cookbooks = rest.post("environments/#{env}/cookbook_versions", request)
 
+  File.open(role, 'w') do |f|
+    cookbooks.each_key{ |k|
+      f.printf("%-20s %s\n", cookbooks[k].name, cookbooks[k].version)
+    }
+  end
+end

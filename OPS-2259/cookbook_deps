@@ -18,8 +18,11 @@ rest = Chef::REST.new(chef_server_url, 'peterb', client_key)
 
 env='dev1'
 request = { "run_list"  => [ "zs-role" ] }
-res = rest.post("environments/#{env}/cookbook_versions", request)
+cookbooks = rest.post("environments/#{env}/cookbook_versions", request)
 
-require 'psych'
-puts Psych.dump(res)
+
+
+cookbooks.each_key{ |k| 
+  printf "%-20s %s\n", cookbooks[k].name, cookbooks[k].version
+ }
 

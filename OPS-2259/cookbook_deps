@@ -2,25 +2,17 @@
 
 require 'rubygems'
 require 'chef'
-require 'yaml'
-#require 'chef/config'
-#require 'chef/log'
-#require 'chef/rest'
 
-cookbook_path		        = "#{ENV['HOME']}/Chef"
 node_name               = "#{ENV['KNIFE_NODE_NAME']}"
 client_key              = "#{ENV['KNIFE_CLIENT_KEY']}"
-validation_client_name  = "#{ENV['KNIFE_VALIDATION_CLIENT_NAME']}"
-validation_key          = "#{ENV['KNIFE_VALIDATION_CLIENT_KEY']}"
 chef_server_url         = "#{ENV['KNIFE_CHEF_SERVER']}"
 
-rest = Chef::REST.new(chef_server_url, 'peterb', client_key)
+rest = Chef::REST.new(chef_server_url, node_name, client_key)
 
 env='dev1'
+
 request = { "run_list"  => [ "zs-role" ] }
 cookbooks = rest.post("environments/#{env}/cookbook_versions", request)
-
-
 
 cookbooks.each_key{ |k| 
   printf "%-20s %s\n", cookbooks[k].name, cookbooks[k].version

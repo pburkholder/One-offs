@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'chef'
+require 'yaml'
 #require 'chef/config'
 #require 'chef/log'
 #require 'chef/rest'
@@ -15,5 +16,10 @@ chef_server_url         = "#{ENV['KNIFE_CHEF_SERVER']}"
 
 rest = Chef::REST.new(chef_server_url, 'peterb', client_key)
 
-puts rest.get_rest("/clients")
+env='dev1'
+request = { "run_list"  => [ "zs-role" ] }
+res = rest.post("environments/#{env}/cookbook_versions", request)
+
+require 'psych'
+puts Psych.dump(res)
 

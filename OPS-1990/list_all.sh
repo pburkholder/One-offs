@@ -10,9 +10,9 @@
 
 #for i in */list; do grep -q 2013 $i || wc -l $i; done
 
-s3cmd ls | awk '{print $3}' |
-  while read bucket; do 
-    printf "$bucket: "
-    s3cmd ls $bucket | wc -l
-  done
+#s3cmd ls | awk '{print $3}' |
+#  while read bucket; do 
+#    printf "$bucket: "
+#    s3cmd ls $bucket | wc -l
+#  done
 

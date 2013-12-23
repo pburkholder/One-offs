@@ -28,14 +28,23 @@ snap-222e5b2c (server)
 
 [6] Now go to the Snapshots section under the ELASTIC BLOCK STORE on the AWS console and find your newly created snapshot. Right click on the snapshot and select “Create Volume from Snapshot” Enter the new size you want your C: to be let’s say 100GB for example also make sure you pick the same availability zone your instance is running refer to step 3 Zone information. 
 
-
+255 Gb us-east-1c
 
 [7] Go back to the Volumes page you should see the new volume you have created from the snapshot there. Now right click on this volume and select “Attach Volume” select the instance name you noted down in Step 1 Use xvdf as a mount point. Write down this volume name for future reference.
 
+VOLUME  vol-f516f8b6  255 snap-222e5b2c us-east-1c  available 2013-09-11T19:24:48+0000  standard
+Attached as xvdf to spotfire-server
+
+vol-5911ff1a for spotfire-web
+
 [8] Now Remote Desktop to your running instance and launch from the Computer Management tool and select the storage/Disk management tab and you should now see two physical drives here the original C: drive which is still at 30GB and your secondary D: drive which in our example was 100GB size has one partition the same size as the C: drive and the remaining space is unallocated space. If you see this then go to the next step. 
 
+OK
 
 [9] Go back to the AWS console and stop the instance and then go to the volumes tab. find the boot volume we noted from step 2 and right click and select detach volume. Now go and find the newly created/extended volume from step 7. Right click and detach this volume. When the detach is fully complete right click again and select attach and pick the instance id we noted down in step 1 and select the following as a mount point /dev/sda1
+
+
+vol-f516f8b6
 
 
 [10] Open a command prompt and load the command line disk management tool “diskpart” and issue the following commands
@@ -52,7 +61,6 @@ Now if you refresh the Storage management screen you should now see the D: drive
 NOTES
 i-96bc11f7 spotfire-server 
 
-i-7528aa1a spotfire-web up since 2013-06-96
 i-a072ffce spotfire-web up since 2013-08-15
 
 ec2stop i-96bc11f7  vol vol-1bd8a240 snap snap-8cfbf6d6
@@ -66,3 +74,11 @@ TAG snapshot  snap-ba285db4 Name  30gb_snap_spotfireweb
 SNAPSHOT  snap-222e5b2c vol-1bd8a240  completed 2013-09-11T18:55:59+0000  100%  900901929911  30
 TAG snapshot  snap-222e5b2c Name  30gb_snap_spotfireserver
 
+spotfire-server STEPS
+* Steps 1-8 pretty much followed as described
+* In step 8 I saw disk 0 (/dev/sda1, 30Gb)
+** disk 1 and disk 2 (ephemeral)
+** disk 3 - 30Gb allocates, 255Gb unallocated, no mounted because of signature collision
+* I tried to do do the diskpart stuff (step 10), but got some volume error.
+* I jumped back to step 9, detaching and re-attaching (as /dev/sda1, no xdf1)
+* can't connect....
